@@ -53,18 +53,18 @@ def fetch_nba_data(seasons=None):
     for season in seasons:
         print(f"  Fetching {season}...")
         try:
-            # Fixed: use per_mode_simple_nullable instead of per_mode_simple
+            # Fixed: use per_mode_detailed instead of per_mode_detailed
             pg = LeagueDashPlayerStats(
                 season=season,
-                per_mode_simple_nullable='PerGame',
-                measure_type_simple_nullable='Base'
+                per_mode_detailed='PerGame',
+                measure_type_detailed_defense='Base'
             ).get_data_frames()[0]
 
             try:
                 adv = LeagueDashPlayerStats(
                     season=season,
-                    per_mode_simple_nullable='PerGame',
-                    measure_type_simple_nullable='Advanced'
+                    per_mode_detailed='PerGame',
+                    measure_type_detailed_defense='Advanced'
                 ).get_data_frames()[0]
 
                 # Only keep advanced cols that exist
